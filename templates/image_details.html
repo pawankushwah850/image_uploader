@@ -1,0 +1,28 @@
+{% include "base.html" %}
+{% block body %}
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>pk</th>
+                <th>image</th>
+                <th>created time</th>
+                <th>sharable link</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for img_data in object_list %}
+                <tr>
+                    <td>{{ img_data.id }}</td>
+                    <td><img src="{{ img_data.image.url }}" width="50" , height="50"/></td>
+                    <td>{{ img_data.created_at }}</td>
+                    <td><a href={{ img_data.image.url }}>click here</a></td>
+                    <td><a href="{% url 'image_handler_app:uploaded-image-details' img_data.id %}">delete</a> </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

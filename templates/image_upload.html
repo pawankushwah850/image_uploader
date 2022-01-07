@@ -1,0 +1,22 @@
+{% include "base.html" %}
+{% block body %}
+    <div class="container">
+        <div class="center">
+
+            {% if messages %}
+                {% for message in messages %}
+
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+
+            <form action="{% url "image_handler_app:image-upload-view" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="upload" class="btn"/>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
